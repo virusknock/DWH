@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>[MSE- e-Com] Magento - Specific Days/Month Count</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://kit.fontawesome.com/ca9bd4dabb.js" crossorigin="anonymous"></script>
+    <link href="main.min.css" rel="stylesheet" />
+</head>
+
+<body class="fixed-navbar fixed-layout">
+        <div class="row m-4 costomContainer">
+                <div class="col-md-12">
+                  <div class="row m-2 text-left">
+                    <div class="col-md-3">
+                      <select class="search" style="width:80%" id="MarketCode" onchange="profile('consumer')" title="Select Market">
+
+                        <option value="BR"> BR </option>
+                        <option value="ES"> ES </option>
+                        <option value="FR"> FR </option>
+                        <option value="CH"> CH </option>
+                        <option value="IT"> IT </option>
+                        <option value="PL"> PL </option>
+                        <option value="TW"> TW </option>
+                        <option value="AU"> AU </option>
+                        <option value="NZ"> NZ </option>
+                        <option value="BG"> BG </option>
+                        <option value="CZ"> CZ </option>
+                        <option value="GR"> GR </option>
+                        <option value="HU"> HU </option>
+                        <option value="RO"> RO </option>
+                        <option value="SK"> SK </option>
+                        <option value="UA"> UA </option>
+                        <option value="TR"> TR </option>
+                        <option value="ZA"> ZA </option>
+                        <option value="SG"> SG </option>
+                        <option value="MY"> MY </option>
+                        <option value="PH"> PH </option>
+                        <option value="PY"> PY </option>
+                        <option value="UY"> UY </option>
+                        <option value="CO"> CO </option>
+                        <option value="CR"> CR </option>
+                        <option value="DO"> DO </option>
+                        <option value="EC"> EC </option>
+                        <option value="PE"> PE </option>
+                        <option value="VE"> VE </option>
+                        <option value="EE"> EE </option>
+                        <option value="LV"> LV </option>
+                        <option value="LT"> LT </option>
+                        <option value="MT"> MT </option>
+                        <option value="AE"> AE </option>
+                        <option value="SA"> SA </option>
+                        <option value="KW"> KW </option>
+                        <option value="JO"> JO </option>
+                        <option value="QA"> QA </option>
+                        <option value="LB"> LB </option>
+                        <option value="NO"> NO </option>
+                        <option value="SE"> SE </option>
+                        <option value="FI"> FI </option>
+                        <option value="DK"> DK </option>
+                        <option value="AT"> AT </option>
+                        <option value="DE"> DE </option>
+                        <option value="PT"> PT </option>
+                        <option value="KR"> KR </option>
+                        <option value="AR"> AR </option>
+                        <option value="CL"> CL </option>
+                        <option value="MX"> MX </option>
+                        <option value="UK"> UK </option>
+                        <option value="IE"> IE </option>
+                        <option value="BE"> BE </option>
+                        <option value="NL"> NL </option>
+
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <input type="date" class="form-control" id="date" title="Select From Date" onchange="profile('consumer')">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6" onclick="profile('consumer')">
+                        <div class="ibox" style="background-color:#e86161">
+                                <span id="consumer_fas"><i class="fa-solid fa-user"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class=" text-white">CONSUMER </h2>
+                                        <div class="textmuted">
+                                                <span id="customer_date">2023-01-01</span>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-md-6" onclick="profile('order')">
+                        <div class="ibox bg-success">
+                                <span id="order_fas"><i class="fa-solid fa-cart-shopping"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">ORDER</h2>
+                                        <div class="textmuted">
+                                                <span id="order_date">2023-01-01</span>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-6" onclick="profile('order_itme')">
+                        <div class="ibox"  style="background-color:#562d0f">
+                                <span id="order_itme_fas"><i class="fa-solid fa-code-branch"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">ORDER ITEM</h2>
+                                        <div class="textmuted text-success">
+                                                <span id="subscriber_date">2023-01-01</span>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-6" onclick="profile('capsule')">
+                        <div class="ibox bg-info">
+                                <span id="capsule_fas"><i class="fa-solid fa-capsules"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">CAPSULE</h2>
+                                        <div class="textmuted">
+                                                <span id="capsule_date">2023-01-01</span>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-md-6" onclick="profile('loylty')">
+                        <div class="ibox bg-dark">
+                                <span id="loylty_fas"><i class="fa-solid fa-code-branch"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">LOYLTY</h2>
+                                        <div class="textmuted text-success">
+                                                <span id="loylty_date">2023-01-01</span>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-md-6" onclick="profile('machine')">
+                        <div class="ibox"  style="background-color:#29273c">
+                                <span id="machine_fas"><i class="fa-solid fa-code-branch"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">Machine Registration</h2>
+                                        <div class="textmuted text-success">
+                                                <span id="address_date">2023-01-01</span>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <script>
+            $(document).ready(function() {
+              $('.search').select2();
+            });
+        </script>
+        <script type="text/javascript">
+
+          function profile(pname){
+                let fasEle = document.querySelector("#"+pname+'_fas');
+                let fasText = fasEle.innerHTML;
+                fasEle.innerHTML = '<i class="fa-solid fas fa-spinner fa-spin"></i>';
+
+                  let date = document.querySelector("#date").value;
+                  let Market = document.querySelector("#MarketCode").value;
+                  let MarketCode = "ndg_"+Market.toLowerCase()
+                  let customer_date = document.querySelector("#customer_date").innerHTML=date;
+                  let order_date = document.querySelector("#order_date").innerHTML=date;
+                  let capsule_date = document.querySelector("#capsule_date").innerHTML=date;
+                  let loylty_date = document.querySelector("#loylty_date").innerHTML=date;
+                  let subscriber_date = document.querySelector("#subscriber_date").innerHTML=date;
+                  let address_date = document.querySelector("#address_date").innerHTML=date;
+
+            let query = "";
+
+              if(pname == "consumer"){
+                query = `select REPLACE(DATE_FORMAT('${date}',"%Y-%m-%d"), '-', '') AS 'Date', (select count(*) from newsletter_subscriber ns where ns.customer_id=0 and ns.subscriber_status=1 and ns.created_at > cast(SUBDATE("${date}", 1) as datetime) and ns.created_at < cast("${date}" as datetime) and ns.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Anonymous_Optin, (select count(*) from newsletter_subscriber ns where ns.customer_id=0 and ns.subscriber_status=3 and ns.created_at > cast(SUBDATE("${date}", 1) as datetime) and ns.created_at < cast("${date}" as datetime) and ns.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Anonymous_Optout, (select count(*) from newsletter_subscriber ns where ns.customer_id=0 and ns.subscriber_status=2 and ns.created_at > cast(SUBDATE("${date}", 1) as datetime) and ns.created_at < cast("${date}" as datetime) and ns.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Anonymous_not_Confirmed, (select count(*) from customer_entity ce where ce.confirmation is null and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_AccntRgstrtnConfrmd, (select count(*) from customer_entity ce where ce.confirmation is not null and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_AccntRgstrtnNotConfrmd, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=1 and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as RgstrdOptin, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=1 and ce.confirmation is null and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as RgstrdOptin_AccntRgstrtnConfrmd, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=1 and ce.confirmation is not null and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as RgstrdOptin_AccntRgstrtnNotCnfrmd, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=3 and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as RgstrdOptout, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=3 and ce.confirmation is null and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as RgstrdOptout_AccntRgstrtnConfrmd, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=3 and ce.confirmation is not null and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as RgstrdOptout_AccntRgstrtnNotCnfrmd, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=2 and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_OptinNotCnfrmd, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=2 and ce.confirmation is null and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_OptinNotCnfrmd_AccntRgstrtnConfrmd, (select count(*) from customer_entity ce inner join newsletter_subscriber ns on ns.customer_id=ce.entity_id where ns.subscriber_status=2 and ce.confirmation is not null and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_OptinNotCnfrmd_AccntRgstrtnNotConfrmd, (select count(*) from newsletter_subscriber ns where ns.customer_id=0 and ns.created_at > cast(SUBDATE("${date}", 1) as datetime) and ns.created_at < cast("${date}" as datetime) and ns.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Anonymous_Total, (select count(*) from newsletter_subscriber ns where ns.customer_id=0 and ns.created_at < cast("${date}" as datetime) and ns.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Anonymous_Total_SinceOrigin, (select count(*) from customer_entity ce where ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_Total, (select count(*) from customer_entity ce where ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_Total_SinceOrigin, (select count(*) from customer_entity ce left join customer_entity_int cei on cei.entity_id=ce.entity_id inner join eav_attribute ea on ea.attribute_id=cei.attribute_id and ea.attribute_code='is_anonymized' where cei.value=1 and ce.created_at > cast(SUBDATE("${date}", 1) as datetime) and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_Anonymized, (select count(*) from customer_entity ce left join customer_entity_int cei on cei.entity_id=ce.entity_id inner join eav_attribute ea on ea.attribute_id=cei.attribute_id and ea.attribute_code='is_anonymized' where cei.value=1 and ce.created_at < cast("${date}" as datetime) and ce.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" ) ) as Rgstrd_Anonymized_SinceOrigin ;\n`;
+              }else if(pname == "order"){
+                query = `select REPLACE(DATE_FORMAT('${date}',"%Y-%m-%d"), '-', '') AS 'Date', (select count(*) from sales_order so where so.created_at < cast("${date}" as datetime) and so.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Order_Total_SinceOrigin, (select count(*) from sales_order so where so.created_at > cast(SUBDATE("${date}", 1) as datetime) and so.created_at < cast("${date}" as datetime) and so.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Order_Total, (select count(*) from sales_order so where so.created_at < cast("${date}" as datetime) and so.status in ('complete', 'completed', 'shipped', 'in_transit') and so.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Order_Completed_Total_SinceOrigin, (select count(*) from sales_order so where so.status in ('complete', 'completed', 'shipped', 'in_transit') and so.created_at > cast(SUBDATE("${date}", 1) as datetime) and so.created_at < cast("${date}" as datetime) and so.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Order_Completed_Total;\n`;
+              }else if(pname == "order_itme"){
+                query = `select REPLACE(DATE_FORMAT('${date}',"%Y-%m-%d"), '-', '') AS 'Date', (select count(*) from sales_order_item so where so.created_at < cast("${date}" as datetime) and so.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Order_Items_SinceOrigin, (select count(*) from sales_order_item so where so.created_at > cast(SUBDATE("${date}", 1) as datetime) and so.created_at < cast("${date}" as datetime) and so.store_id in (select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}") ) as Order_Items_Total;\n`;
+              }else if(pname == "loylty"){
+                query = `select REPLACE(DATE_FORMAT('${date}',"%Y-%m-%d"), '-', '') AS 'Date', (select count(*) from magento_reward_history rh where rh.created_at > cast(SUBDATE("${date}", 1) as datetime) and rh.created_at < cast("${date}" as datetime) and rh.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Reward_Total, (select count(*) from magento_reward_history rh where rh.created_at < cast("${date}" as datetime) and rh.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Reward_Total_SinceOrigin;\n`;
+              }else if (pname == "capsule") {
+                query = `select REPLACE(DATE_FORMAT('${date}',"%Y-%m-%d"), '-', '') AS 'Date', (select count(*) from ndg_pcm_code_usage as pcu where pcu.added_at > cast(SUBDATE("${date}", 1) as datetime) and pcu.added_at < cast("${date}" as datetime) and pcu.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Pcm_Code_Usage_Total, (select count(*) from ndg_pcm_code_usage as pcu where pcu.added_at < cast("${date}" as datetime) and pcu.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Pcm_Code_Usage_Total_SinceOrigin;\n`;
+              }else if (pname == "machine") {
+                query = `select REPLACE(DATE_FORMAT('${date}',"%Y-%m-%d"), '-', '') AS 'Date', (select count(*) from ndg_machine m left join ndg_machine_to_customer_binding cb on m.entity_id = cb.machine_id left join customer_entity c on cb.customer_id = c.entity_id where m.asset_created_at > cast(SUBDATE("${date}", 1) as datetime) and m.asset_created_at < cast("${date}" as datetime) and c.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Machine_Registration_Total, (select count(*) from ndg_machine m left join ndg_machine_to_customer_binding cb on m.entity_id = cb.machine_id left join customer_entity c on cb.customer_id = c.entity_id where m.asset_created_at < cast("${date}" as datetime) and c.store_id in ( select store_id from store_website sw inner join store s on s.website_id=sw.website_id where sw.code="${MarketCode}" )) as Machine_Registration_Total_SinceOrigin;\n`;
+              }
+
+
+            console.log(query);
+            navigator.clipboard.writeText(query);
+
+            setTimeout(function() {
+              fasEle.innerHTML = '<i class="fa-solid fas fa-check"></i>';
+            }, 100);
+
+            setTimeout(function() {
+                    fasEle.innerHTML = fasText;
+            }, 900);
+          }
+
+        </script>
+
+</body>
+</html>

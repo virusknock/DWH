@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title> Gaps </title>
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/ca9bd4dabb.js" crossorigin="anonymous"></script>
+  <link href="main.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <p id="notFound" class="d-none"></p>
+    <p id="found" class="d-none"></p>
+    <div class="row m-4 costomContainer">
+      <div class="col-md-12">
+        <p id="magentoLength"></p>
+        <p id="dwhLength"></p>
+      </div>
+      <div class="col-md-6" onclick="Found()">
+        <div class="ibox bg-success">
+          <span id="Found"><i class="fa-solid fa-cart-shopping"></i></span>
+          <div class="ibox-body text-center">
+            <h2 class="mb-1 text-white">Found Records</h2>
+            <p><span id="foundCount"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6" onclick="NotFound()">
+        <div class="ibox" style="background-color:#e86161">
+          <span id="NotFound"><i class="fa-solid fa-user"></i></span>
+          <div class="ibox-body text-center">
+            <h2 class="mb-1 text-white">Not Found Records </h2>
+            <p><span id="notFoundCount"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <textarea id="magento" class="form-control m-2" rows="8" cols="80" placeholder="Enter Magento" onkeyup="compate()" ></textarea>
+        <textarea id="dwh" class="form-control m-2" rows="8" cols="80" placeholder="Enter Dwh" onkeyup="compate()" ></textarea>
+      </div>
+    </div>
+    <script type="text/javascript">
+
+        function compate(){
+
+        let magentoVal = document.querySelector("#magento").value;
+        let dwhVal = document.querySelector("#dwh").value;
+
+        let magentoPipe = magentoVal.replace(/\|/g, "");
+        let dwhPipe = dwhVal.replace(/\|/g, "");
+
+        const magento = magentoPipe.split("\n");
+        const dwh = dwhPipe.split("\n");
+
+         document.querySelector("#magentoLength").innerHTML = "<b>Magento Count: </b>"+magento.length;
+         document.querySelector("#dwhLength").innerHTML = "<b>DWH Count: </b>"+dwh.length;
+
+         var found = "";
+         var foundCount = 0;
+         var notFound = "";
+         var notFoundCount = 0;
+          for (var i = 0; i < magento.length; i++) {
+            if (dwh.includes(magento[i])) {
+              if (found == "") {
+                found += "'"+magento[i].trim()+"'";
+              }else{
+                found += ", '"+magento[i].trim()+"'";
+              }
+              foundCount ++;
+            }else{
+              if (notFound == "") {
+                notFound += "'"+magento[i].trim()+"'";
+              }else{
+                notFound += ", '"+magento[i].trim()+"'";
+              }
+              notFoundCount++;
+            }
+          }
+
+          document.querySelector("#notFoundCount").innerHTML = "<b>Not Found: </b>"+notFoundCount;
+          document.querySelector("#foundCount").innerHTML = "<b>Found: </b>"+foundCount;
+
+          document.querySelector("#notFound").innerHTML = notFound;
+          document.querySelector("#found").innerHTML = found;
+
+          }
+
+          function NotFound(){
+            let fasEle = document.querySelector("#NotFound");
+            let fasText = fasEle.innerHTML;
+            fasEle.innerHTML = '<i class="fa-solid fas fa-spinner fa-spin"></i>';
+
+            let notFoundRecords = document.querySelector("#notFound").innerHTML;
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(notFoundRecords);
+
+            /* Alert the copied text */
+            setTimeout(function() {
+              fasEle.innerHTML = '<i class="fa-solid fas fa-check"></i>';
+              // fasEle.innerHTML = fasText;
+            }, 100);
+            setTimeout(function() {
+              fasEle.innerHTML = fasText;
+            }, 900);
+          }
+
+          function Found(){
+            let fasEle = document.querySelector("#Found");
+            let fasText = fasEle.innerHTML;
+            fasEle.innerHTML = '<i class="fa-solid fas fa-spinner fa-spin"></i>';
+
+            let foundRecords = document.querySelector("#found").innerHTML;
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(foundRecords);
+
+            /* Alert the copied text */
+            setTimeout(function() {
+              fasEle.innerHTML = '<i class="fa-solid fas fa-check"></i>';
+              // fasEle.innerHTML = fasText;
+            }, 100);
+            setTimeout(function() {
+              fasEle.innerHTML = fasText;
+            }, 900);
+          }
+    </script>
+</body>
+</html>

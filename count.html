@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>[MSE- e-Com] Magento - Specific Days/Month Count</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://kit.fontawesome.com/ca9bd4dabb.js" crossorigin="anonymous"></script>
+    <link href="main.min.css" rel="stylesheet" />
+</head>
+
+<body class="fixed-navbar fixed-layout">
+  <div class="row">
+    <div class="col-md-12">1
+      <div class="iboxAll">
+      <h3 class="text-center mt-2 text-primary">Magento Profile Count</h3>
+      <h1 onclick="displayToAll()"><i class="fa-solid fa-gear text-danger"></i></h1>
+    </div>
+    </div>
+  </div>
+        <div class="row m-4 costomContainer">
+                <div class="col-md-12">
+                  <div class="row m-2 text-left">
+                    <div class="col-md-3">
+                      <select class="search" style="width:80%" id="MarketCode" onchange="displayToAll()" title="Select Market">
+
+                        <option value="BR"> BR </option>
+                        <option value="ES"> ES </option>
+                        <option value="FR"> FR </option>
+                        <option value="CH"> CH </option>
+                        <option value="IT"> IT </option>
+                        <option value="PL"> PL </option>
+                        <option value="TW"> TW </option>
+                        <option value="AU"> AU </option>
+                        <option value="NZ"> NZ </option>
+                        <option value="BG"> BG </option>
+                        <option value="CZ"> CZ </option>
+                        <option value="GR"> GR </option>
+                        <option value="HU"> HU </option>
+                        <option value="RO"> RO </option>
+                        <option value="SK"> SK </option>
+                        <option value="UA"> UA </option>
+                        <option value="TR"> TR </option>
+                        <option value="ZA"> ZA </option>
+                        <option value="SG"> SG </option>
+                        <option value="MY"> MY </option>
+                        <option value="PH"> PH </option>
+                        <option value="PY"> PY </option>
+                        <option value="UY"> UY </option>
+                        <option value="CO"> CO </option>
+                        <option value="CR"> CR </option>
+                        <option value="DO"> DO </option>
+                        <option value="EC"> EC </option>
+                        <option value="PE"> PE </option>
+                        <option value="VE"> VE </option>
+                        <option value="EE"> EE </option>
+                        <option value="LV"> LV </option>
+                        <option value="LT"> LT </option>
+                        <option value="MT"> MT </option>
+                        <option value="AE"> AE </option>
+                        <option value="SA"> SA </option>
+                        <option value="KW"> KW </option>
+                        <option value="JO"> JO </option>
+                        <option value="QA"> QA </option>
+                        <option value="LB"> LB </option>
+                        <option value="NO"> NO </option>
+                        <option value="SE"> SE </option>
+                        <option value="FI"> FI </option>
+                        <option value="DK"> DK </option>
+                        <option value="AT"> AT </option>
+                        <option value="DE"> DE </option>
+                        <option value="PT"> PT </option>
+                        <option value="KR"> KR </option>
+                        <option value="AR"> AR </option>
+                        <option value="CL"> CL </option>
+                        <option value="MX"> MX </option>
+                        <option value="UK"> UK </option>
+                        <option value="IE"> IE </option>
+                        <option value="BE"> BE </option>
+                        <option value="NL"> NL </option>
+
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <input type="date" class="form-control" id="topDate" value="2023-01-01" title="Select From Date" onchange="displayToAll()">
+                    </div>
+                    <div class="col-md-3">
+                      <input type="date" class="form-control" id="bottomDate" value="2023-01-31" title="Select To Date" onchange="displayToAll()">
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="profileCount" value="dayWise" id="dayWise" onclick="displayToAll()" checked>
+                        <label class="form-check-label dayWise" for="profileCount1">
+                          Day Wise
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="profileCount" value="monthWise" id="monthWise" onclick="displayToAll()">
+                        <label class="form-check-label monthWise" for="profileCount2">
+                          Month Wise
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6" onclick="profile('consumer')">
+                        <div class="ibox" style="background-color:#e86161">
+                                <span id="consumer_fas"><i class="fa-solid fa-user"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">CONSUMER </h2>
+                                        <div class="textmuted">
+                                                <span id="consumer_from">2023-01-01</span> 00:00:00 <=> <span id="consumer_to">2023-01-31</span> 23:59:59
+                                        </div>
+                                        <p><span id="consumer_market">IT</span> Market</p>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-md-6" onclick="profile('order')">
+                        <div class="ibox bg-success">
+                                <span id="order_fas"><i class="fa-solid fa-cart-shopping"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">ORDER</h2>
+                                        <div class="textmuted">
+                                                <span id="order_from">2023-01-01</span> 00:00:00 <=> <span id="order_to">2023-01-31</span> 23:59:59
+                                        </div>
+                                        <p><span id="order_market">IT</span> Market</p>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-md-6" onclick="profile('capsule')">
+                        <div class="ibox bg-info">
+                                <span id="capsule_fas"><i class="fa-solid fa-capsules"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">CAPSULE</h2>
+                                        <div class="textmuted">
+                                                <span id="capsule_from">2023-01-01</span> 00:00:00 <=> <span id="capsule_to">2023-01-31</span> 23:59:59
+                                        </div>
+                                        <p><span id="capsule_market">IT</span> Market</p>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="col-md-6" onclick="profile('loylty')">
+                        <div class="ibox bg-dark">
+                                <span id="loylty_fas"><i class="fa-solid fa-code-branch"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">LOYLTY</h2>
+                                        <div class="textmuted text-success">
+                                                <span id="loylty_from">2023-01-01</span> 00:00:00 <=> <span id="loylty_to">2023-01-31</span> 23:59:59
+                                        </div>
+                                        <p class="text-info"><span id="loylty_market">IT</span> Market</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-6" onclick="profile('subscribe')">
+                        <div class="ibox"  style="background-color:#562d0f">
+                                <span id="subscribe_fas"><i class="fa-solid fa-code-branch"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">NEWSLETTER SUBSCRIBER</h2>
+                                        <div class="textmuted text-success">
+                                                <span id="subscribe_from">2023-01-01</span> 00:00:00 <=> <span id="subscribe_to">2023-01-31</span> 23:59:59
+                                        </div>
+                                        <p class="text-info"><span id="subscribe_market">IT</span> Market</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-6" onclick="profile('address')">
+                        <div class="ibox"  style="background-color:#29273c">
+                                <span id="address_fas"><i class="fa-solid fa-code-branch"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">CUSTOMER ADDRESS</h2>
+                                        <div class="textmuted text-success">
+                                                <span id="address_from">2023-01-01</span> 00:00:00 <=> <span id="address_to">2023-01-31</span> 23:59:59
+                                        </div>
+                                        <p class="text-info"><span id="address_market">IT</span> Market</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-6" onclick="profile('archive')">
+                        <div class="ibox"  style="background-color:#464040">
+                                <span id="archive_fas"><i class="fa-solid fa-code-branch"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">CAPSULE ARCHIVE</h2>
+                                        <div class="textmuted text-success">
+                                                <span id="archive_from">2023-01-01</span> 00:00:00 <=> <span id="archive_to">2023-01-31</span> 23:59:59
+                                        </div>
+                                        <p class="text-info"><span id="archive_market">IT</span> Market</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-md-6" onclick="profile('asset')">
+                        <div class="ibox"  style="background-color:#4c4cbb">
+                                <span id="asset_fas"><i class="fa-solid fa-code-branch"></i></span>
+                                <div class="ibox-body text-center">
+                                        <h2 class="mb-1 text-white">Machine (Asset) </h2>
+                                        <div class="textmuted text-success">
+                                                <span id="asset_from">2023-01-01</span> 00:00:00 <=> <span id="asset_to">2023-01-31</span> 23:59:59
+                                        </div>
+                                        <p class="text-info"><span id="asset_market">IT</span> Market</p>
+                                </div>
+                        </div>
+                </div>
+        </div>
+  <!-- <span id="four_market_text" class="d-none">BR, 2022-06-26, 2022-06-31</span> -->
+  <script>
+      $(document).ready(function() {
+        $('.search').select2();
+        getCurrentDate();
+      });
+
+      function daysInMonth(year, month) {
+        return new Date(year, month, 0).getDate();
+      }
+
+      function getCurrentDate(){
+        let currentDate = new Date();
+        let month = currentDate.getMonth() + 1; // Months are zero-based
+        let year = currentDate.getFullYear();
+        let startDay = "01";
+        let endDay = daysInMonth(year, month);
+        let formattedStartDate = year + "-" + month + "-" + startDay;
+        let formattedEndDate = year + "-" + month + "-" + endDay;
+        document.getElementById("topDate").value=formattedStartDate;
+        document.getElementById("bottomDate").value=formattedEndDate;
+      }
+  </script>
+    <script type="text/javascript">
+
+    const m2Markets = ['CH', 'IT', 'PL', 'TW', 'KR', 'AU', 'NZ', 'BG', 'CZ', 'GR', 'HU', 'RO', 'SK', 'UA', 'TR', 'ZA', 'SG', 'MY', 'PH', 'PY', 'UY', 'CO', 'CR', 'DO', 'EC', 'PE', 'VE', 'EE', 'LV', 'LT', 'MT', 'AE', 'SA', 'KW', 'JO', 'QA', 'LB', 'NO', 'SE', 'FI', 'DK','BR', 'AR', 'CL', 'MX', 'BE', 'NL', 'AT', 'DE', 'ES', 'FR', 'UK', 'IE'];
+
+    // UPDATE HUB & STORE_ID WHEN ADDING NEW MARKET
+    const hub = [ 'BE', 'NL', 'IE', 'UK', 'AU', 'NZ', 'CZ', 'SK'];
+    const store_id = {BE:"('1','3')", NL:"('4','5')", IE:"('3')", UK:"('1','2')", AU:"('1')", NZ:"('3')", CZ:"('1')", SK:"('3')"};
+
+
+      refreshData();
+      function refreshData()
+      {
+        let market = document.querySelector("#MarketCode").value;
+        let from = document.querySelector("#topDate").value;
+        let to = document.querySelector("#bottomDate").value;
+
+        document.querySelector("#consumer_from").innerHTML = from;
+        document.querySelector("#order_from").innerHTML = from;
+        document.querySelector("#capsule_from").innerHTML = from;
+        document.querySelector("#loylty_from").innerHTML = from;
+        document.querySelector("#subscribe_from").innerHTML = from;
+        document.querySelector("#address_from").innerHTML = from;
+        document.querySelector("#archive_from").innerHTML = from;
+
+        document.querySelector("#consumer_to").innerHTML = to;
+        document.querySelector("#order_to").innerHTML = to;
+        document.querySelector("#capsule_to").innerHTML = to;
+        document.querySelector("#loylty_to").innerHTML = to;
+        document.querySelector("#subscribe_to").innerHTML = to;
+        document.querySelector("#address_to").innerHTML = to;
+        document.querySelector("#archive_to").innerHTML = to;
+
+        document.querySelector("#consumer_market").innerHTML = market;
+        document.querySelector("#order_market").innerHTML = market;
+        document.querySelector("#capsule_market").innerHTML = market;
+        document.querySelector("#loylty_market").innerHTML = market;
+        document.querySelector("#subscribe_market").innerHTML = market;
+        document.querySelector("#address_market").innerHTML = market;
+        document.querySelector("#archive_market").innerHTML = market;
+
+        return [market, from, to];
+      }
+
+
+
+      function profile(pname){
+            let fasEle = document.querySelector("#"+pname+'_fas');
+            let fasText = fasEle.innerHTML;
+            fasEle.innerHTML = '<i class="fa-solid fas fa-spinner fa-spin"></i>';
+
+        let query = "";
+
+        var profileCount = document.querySelector('input[name="profileCount"]:checked').value;
+        let dayWise = document.querySelector(".dayWise");
+        let monthWise = document.querySelector(".monthWise");
+
+        let dateFormat = `"%Y-%m"`;
+        if (profileCount == "dayWise") {
+          dateFormat = `"%Y-%m-%d"`;
+        }
+
+        let store_in = "";
+        if (hub.includes(refreshData()[0])) {
+          store_in = `and e.store_id in ${store_id[refreshData()[0]]}`;
+        }
+
+        let ndg_db = ``;
+        // let ndg_db = `ndg_${refreshData()[0].toLowerCase()}.`;
+
+        let dateRange = `'${refreshData()[1]} 00:00:00' AND '${refreshData()[2]} 23:59:59' ${store_in}`;
+
+          if(pname == "consumer"){
+            query = `SELECT 'Consumers' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.created_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT e.entity_id) COUNT FROM ${ndg_db}customer_entity e WHERE  e.created_at BETWEEN ${dateRange} GROUP BY Date;\n`;
+
+          }else if(pname == "order"){
+            query = `SELECT 'Magento_Orders' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.created_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT e.entity_id) COUNT FROM ${ndg_db}sales_order e JOIN ${ndg_db}customer_entity AS c ON e.customer_id = c.entity_id WHERE  e.created_at BETWEEN ${dateRange}  GROUP BY Date;\n`;
+
+          }else if(pname == "capsule"){
+            query = `SELECT 'Capsule_Codes' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.added_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT e.entity_id) COUNT FROM ${ndg_db}ndg_pcm_code_usage e JOIN ${ndg_db}customer_entity AS c ON e.customer_id = c.entity_id JOIN ${ndg_db}store_website AS cw ON cw.website_id = c.website_id WHERE  e.added_at BETWEEN ${dateRange} GROUP BY Date;\n`;
+          }else if(pname == "loylty"){
+            query = `SELECT 'Loyalty' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.created_at,${dateFormat}), '-', '') AS 'Date', Count(e.reward_id) COUNT FROM ${ndg_db}magento_reward_history e WHERE  e.created_at BETWEEN ${dateRange} GROUP BY Date;\n`;
+          }else if (pname == "subscribe") {
+            query = `SELECT 'Newsletter' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.created_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT e.subscriber_id) COUNT FROM ${ndg_db}newsletter_subscriber e WHERE  e.created_at BETWEEN ${dateRange} GROUP BY Date;\n`;
+          }else if (pname == "address") {
+            query = `SELECT 'Address' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(ca.created_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT ca.parent_id) COUNT FROM ${ndg_db}customer_address_entity AS ca JOIN ${ndg_db}customer_entity AS e ON ca.parent_id=e.entity_id WHERE ca.created_at BETWEEN ${dateRange}  GROUP BY Date;\n`;
+          }else if (pname == "archive") {
+            query = `SELECT 'Capsule_Codes_archive' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.added_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT e.entity_id) COUNT FROM ${ndg_db}ndg_pcm_code_usage_archive e JOIN ${ndg_db}customer_entity AS c ON e.customer_id = c.entity_id JOIN ${ndg_db}store_website AS cw ON cw.website_id = c.website_id WHERE  e.added_at BETWEEN ${dateRange} GROUP BY Date;\n`;
+          }else if (pname == "asset") {
+            query = `select 'Asset' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(m.asset_created_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT m.entity_id) COUNT FROM ${ndg_db}ndg_machine m left join ${ndg_db}ndg_machine_to_customer_binding cb on m.entity_id = cb.machine_id left join ${ndg_db}customer_entity c on cb.customer_id = c.entity_id where m.asset_created_at BETWEEN ${dateRange} GROUP BY Date;`
+          }
+
+
+
+
+
+        console.log(query);
+        navigator.clipboard.writeText(query);
+
+        setTimeout(function() {
+          fasEle.innerHTML = '<i class="fa-solid fas fa-check"></i>';
+        }, 100);
+
+        setTimeout(function() {
+                fasEle.innerHTML = fasText;
+        }, 900);
+      }
+
+      function displayToAll(){
+
+
+        let status = "success";
+
+        var profileCount = document.querySelector('input[name="profileCount"]:checked').value;
+        let dayWise = document.querySelector(".dayWise");
+        let monthWise = document.querySelector(".monthWise");
+
+        let dateFormat = `"%Y-%m"`;
+        if (profileCount == "dayWise") {
+          dateFormat = `"%Y-%m-%d"`;
+        }
+
+        let market = document.querySelector("#MarketCode").value;
+        let from = document.querySelector("#topDate").value;
+                                let to = document.querySelector("#bottomDate").value;
+
+
+        let store_in = "";
+        if (hub.includes(refreshData()[0])) {
+          store_in = `and e.store_id in ${store_id[refreshData()[0]]}`;
+        }
+
+        let ndg_db = ``;
+        // let ndg_db = `ndg_${refreshData()[0].toLowerCase()}.`;
+
+        let dateRange = `'${refreshData()[1]} 00:00:00' AND '${refreshData()[2]} 23:59:59' ${store_in}`;
+
+        query = `SELECT 'Consumers' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.created_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT e.entity_id) COUNT FROM ${ndg_db}customer_entity e WHERE  e.created_at BETWEEN ${dateRange} GROUP BY Date;\n`;
+        query += `SELECT 'Magento_Orders' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.created_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT e.entity_id) COUNT FROM ${ndg_db}sales_order e JOIN ${ndg_db}customer_entity AS c ON e.customer_id = c.entity_id WHERE  e.created_at BETWEEN ${dateRange}  GROUP BY Date;\n`;
+        query += `SELECT 'Capsule_Codes' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.added_at,${dateFormat}), '-', '') AS 'Date', Count(DISTINCT e.entity_id) COUNT FROM ${ndg_db}ndg_pcm_code_usage e JOIN ${ndg_db}customer_entity AS c ON e.customer_id = c.entity_id JOIN ${ndg_db}store_website AS cw ON cw.website_id = c.website_id WHERE  e.added_at BETWEEN ${dateRange} GROUP BY Date;\n`;
+        query += `SELECT 'Loyalty' AS 'Profile', '${refreshData()[0]}' AS 'Market', REPLACE(DATE_FORMAT(e.created_at,${dateFormat}), '-', '') AS 'Date', Count(e.reward_id) COUNT FROM ${ndg_db}magento_reward_history e WHERE  e.created_at BETWEEN ${dateRange} GROUP BY Date;\n`;
+
+        console.log(query);
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(query);
+      }
+
+    </script>
+</body>
+</html>

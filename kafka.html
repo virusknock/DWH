@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <title>[MSE- e-Com] Magento - Specific Days/Month Count</title>
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://kit.fontawesome.com/ca9bd4dabb.js" crossorigin="anonymous"></script>
+    <link href="main.min.css" rel="stylesheet" />
+</head>
+
+<body class="fixed-navbar fixed-layout">
+  <div class="row">
+    <div class="col-md-12">1
+      <div class="iboxAll">
+        <h3 class="text-center mt-2 text-primary">Magento Profile Count</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row m-4 costomContainer">
+    <h6 id="lineCount"></h6>
+    <div class="col-md-12">
+      <div class="row m-2 text-left">
+        <div class="col-md-4">
+          <select class="search" style="width:80%" id="MarketCode" onchange="profile()" title="Select Market">
+
+            <option value="BR"> BR </option>
+            <option value="ES"> ES </option>
+            <option value="FR"> FR </option>
+            <option value="CH"> CH </option>
+            <option value="IT"> IT </option>
+            <option value="PL"> PL </option>
+            <option value="TW"> TW </option>
+            <option value="AU"> AU </option>
+            <option value="NZ"> NZ </option>
+            <option value="BG"> BG </option>
+            <option value="CZ"> CZ </option>
+            <option value="GR"> GR </option>
+            <option value="HU"> HU </option>
+            <option value="RO"> RO </option>
+            <option value="SK"> SK </option>
+            <option value="UA"> UA </option>
+            <option value="TR"> TR </option>
+            <option value="ZA"> ZA </option>
+            <option value="SG"> SG </option>
+            <option value="MY"> MY </option>
+            <option value="PH"> PH </option>
+            <option value="PY"> PY </option>
+            <option value="UY"> UY </option>
+            <option value="CO"> CO </option>
+            <option value="CR"> CR </option>
+            <option value="DO"> DO </option>
+            <option value="EC"> EC </option>
+            <option value="PE"> PE </option>
+            <option value="VE"> VE </option>
+            <option value="EE"> EE </option>
+            <option value="LV"> LV </option>
+            <option value="LT"> LT </option>
+            <option value="MT"> MT </option>
+            <option value="AE"> AE </option>
+            <option value="SA"> SA </option>
+            <option value="KW"> KW </option>
+            <option value="JO"> JO </option>
+            <option value="QA"> QA </option>
+            <option value="LB"> LB </option>
+            <option value="NO"> NO </option>
+            <option value="SE"> SE </option>
+            <option value="FI"> FI </option>
+            <option value="DK"> DK </option>
+            <option value="AT"> AT </option>
+            <option value="DE"> DE </option>
+            <option value="PT"> PT </option>
+            <option value="KR"> KR </option>
+            <option value="AR"> AR </option>
+            <option value="CL"> CL </option>
+            <option value="MX"> MX </option>
+            <option value="UK"> UK </option>
+            <option value="IE"> IE </option>
+            <option value="BE"> BE </option>
+            <option value="NL"> NL </option>
+
+          </select>
+        </div>
+        <div class="col-md-4">
+          <select class="search" style="width:80%" id="profileid" onchange="profile()" title="Select Market">
+
+            <option value="consumer"> Customer </option>
+            <option value="order"> Order </option>
+            <option value="capsule"> Capsule </option>
+            <option value="loyalty"> Loyalty </option>
+            <option value="subscribe"> Newsletter </option>
+            <option value="address"> Address </option>
+            <option value="machine"> Machine </option>
+            <option value="archive"> Capsule Archive </option>
+            <option value="customerKey"> Customer Encryption Key </option>
+
+          </select>
+        </div>
+        <div class="col-md-4">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="profileCount" value="dayWise" id="dayWise" onclick="profile()" checked>
+            <label class="form-check-label dayWise" for="profileCount1">
+              Day Wise
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="profileCount" value="monthWise" id="monthWise" onclick="profile()">
+            <label class="form-check-label monthWise" for="profileCount2">
+              Month Wise
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row m-2 text-left">
+        <div class="col-md-12">
+          <textarea id="datesandtime" class="form-control" onkeypress="profile()" rows="8" cols="80" placeholder="
+          1. Enter Dates one after the other in the format of 20230302
+          2. If the date is invalid, make sure if all the dates has 8 numbers as mentioned in 1st point.
+          3. Once cross-checking, refresh the page and paste again.
+          4. If no errors the scripts are autometically selected to the clipboard." ></textarea>
+        </div>
+        <div class="col-md-12">
+          <button type="button" class="btn btn-danger btn-block p-5 mt-2 text-center" name="button" id="notify" onclick="profile()">Fetch</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+      $(document).ready(function() {
+        $('.search').select2();
+      });
+  </script>
+    <script type="text/javascript">
+
+        const m2Markets = ['CH', 'IT', 'PL', 'TW', 'KR', 'AU', 'NZ', 'BG', 'CZ', 'GR', 'HU', 'RO', 'SK', 'UA', 'TR', 'ZA', 'SG', 'MY', 'PH', 'PY', 'UY', 'CO', 'CR', 'DO', 'EC', 'PE', 'VE', 'EE', 'LV', 'LT', 'MT', 'AE', 'SA', 'KW', 'JO', 'QA', 'LB', 'NO', 'SE', 'FI', 'DK','BR', 'AR', 'CL', 'MX', 'BE', 'NL', 'AT', 'DE', 'ES', 'FR', 'UK', 'IE'];
+
+        // UPDATE HUB & STORE_ID WHEN ADDING NEW MARKET
+        const hub = [ 'BE', 'NL', 'IE', 'UK', 'AU', 'NZ', 'CZ', 'SK', 'PY', 'MT', 'HR', 'RS', 'SI', 'UA', 'RO', 'PH', 'MY', 'GR', 'BG', 'CO', 'DO', 'EC', 'VE', 'UY', 'PE', 'SV', 'GT', 'HN', 'NI', 'PA', 'CR', 'LV', 'EE', 'LT', 'FI', 'DK', 'NO', 'SE', 'ID', 'SG'];
+        const store_id = {BE:"('1','3')", NL:"('4','5')", IE:"('3')", UK:"('1','2')", AU:"('1')", NZ:"('3')", CZ:"('1')", SK:"('3')", PY:"('1')", MT:"('3')", HR:"('4')", RS:"('5')", SI:"('6')", UA:"('7')", RO:"('8')", PH:"('9')", MY:"('12')", GR:"('14')", BG:"('15')", CO:"('18')", DO:"('19')", EC:"('20')", VE:"('21')", UY:"('23')", PE:"('24')", SV:"('25')", GT:"('26')", HN:"('27')", NI:"('28')", PA:"('29')", CR:"('30')", LV:"('31')", EE:"('32')", LT:"('33')", FI:"('34')", DK:"('35')", NO:"('36')", SE:"('37')", ID:"('38')", SG:"('39')"};
+
+      function profile(){
+        let fasEle = document.querySelector("#notify");
+        fasEle.innerHTML = '<i class="fa-solid fas fa-spinner fa-spin text-dark"></i>';
+
+        let pname = document.querySelector("#profileid").value;
+        let market = document.querySelector("#MarketCode").value;
+        let datv = document.querySelector("#datesandtime").value;
+        const datva = datv.split("\n");
+        document.querySelector("#lineCount").innerHTML = datva.length;
+        let query = "";
+        let resname = 'success';
+        navigator.clipboard.writeText(query);
+        let store_in = "";
+
+        if (hub.includes(market)) {
+          store_in = `and store_id in ${store_id[market]}`;
+        }
+
+        for (var i = 0; i < datva.length; i++) {
+          if (datva[i] != "") {
+            let stres = `${datva[i][0]}${datva[i][1]}${datva[i][2]}${datva[i][3]}-${datva[i][4]}${datva[i][5]}-${datva[i][6]}${datva[i][7]}`;
+            stres = stres.trim();
+            if(stres.includes('undefined')){
+              resname = 'failed';
+            }else {
+              var profileCount = document.querySelector('input[name="profileCount"]:checked').value;
+              let dateRange;
+              if (profileCount == "monthWise") {
+                function daysInMonth(year, month) {
+                  return new Date(year, month, 0).getDate();
+                }
+                let whatDaysInMonth = daysInMonth(`${datva[i][0]}${datva[i][1]}${datva[i][2]}${datva[i][3]}`, `${datva[i][4]}${datva[i][5]}`);
+                dateRange = `'${stres} 00:00:00' AND '${datva[i][0]}${datva[i][1]}${datva[i][2]}${datva[i][3]}-${datva[i][4]}${datva[i][5]}-${whatDaysInMonth} 23:59:59' ${store_in}`;
+              }else {
+                dateRange = `'${stres} 00:00:00' AND '${stres} 23:59:59' ${store_in}`;
+              }
+
+            if(pname == "consumer"){
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity customer --action upsert --count 100 --select "SELECT entity_id as id FROM customer_entity WHERE created_at BETWEEN ${dateRange}";\n`;
+
+            }else if(pname == "order"){
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity sales_order --action upsert --count 1000 --select "SELECT entity_id as id FROM sales_order WHERE created_at BETWEEN ${dateRange}";\n`;
+
+            }else if(pname == "capsule"){
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity pcm_code_usage --action upsert --count 1000 --select "SELECT entity_id as id FROM ndg_pcm_code_usage WHERE added_at BETWEEN ${dateRange}";\n`;
+            }else if(pname == "loyalty"){
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity reward_history --action upsert --count 1000 --select "SELECT history_id as id FROM magento_reward_history WHERE created_at BETWEEN ${dateRange}";\n`;
+            }else if (pname == "subscribe") {
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity newsletter_subscriber --action upsert --count 1000 --select "SELECT subscriber_id as id FROM newsletter_subscriber WHERE created_at BETWEEN ${dateRange}";\n`;
+            }else if (pname == "address") {
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity customer_address --action upsert --count 1000 --select "SELECT entity_id as id FROM customer_address_entity WHERE created_at BETWEEN ${dateRange}";\n`;
+            }else if (pname == "machine") {
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity machine --action upsert --count 1000 --select "SELECT machine_id as id FROM ndg_machine_to_customer_binding WHERE asset_created_at BETWEEN ${dateRange}";\n`
+          }else if (pname == "archive") {
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity pcm_code_usage_archive --action upsert --count 1000 --select "SELECT entity_id as id FROM ndg_pcm_code_usage_archive WHERE added_at BETWEEN ${dateRange}";\n`
+          }else if (pname == "customerKey") {
+              query += `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity customer_encryption_key --action upsert --count 1000 --select "SELECT entity_id as id FROM customer_entity WHERE created_at BETWEEN ${dateRange}";\n`
+            }
+            navigator.clipboard.writeText(query);
+          }
+          }
+        }
+        console.log(query);
+        if (resname == 'success') {
+          setTimeout(function() {
+            fasEle.innerHTML = '<i class="fa-solid fas fa-check"></i>';
+          }, 100);
+          setTimeout(function() {
+            fasEle.innerHTML = 'Fetch';
+          }, 900);
+        }else{
+          setTimeout(function() {
+            fasEle.innerHTML = '<i class="fa-solid fas fa-close"></i>';
+          }, 100);
+
+        }
+
+      }
+
+    </script>
+</body>
+</html>
