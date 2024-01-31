@@ -19,13 +19,11 @@
 
       <div class="col-md-12 m-1">
         <select class="search" id="MarketCode" style="width:20%" onchange="compate()">
-          <option value="UK">UK</option>
-          <option value="IE">IE</option>
+          <option value="BR">Other</option>
           <option value="BE">BE</option>
           <option value="NL">NL</option>
-          <option value="CZ">AU / CZ</option>
-          <option value="SK">NZ / SK</option>
-          <option value="BR">Other</option>
+          <option value="CZ">UK / AU / CZ</option>
+          <option value="SK">IE / NZ / SK</option>
         </select>
       </div>
       <div class="col-md-4" onclick="insert()">
@@ -110,9 +108,9 @@
 
             let MarketCode = document.querySelector("#MarketCode").value;
 
-            const hub = ['CZ', 'SK', 'BE', 'NL', 'IE', 'UK'];
+            const hub = ['CZ', 'SK', 'BE', 'NL'];
             // const store_id = {CZ:"('39','40')", SK:"('41','42')", BE:"('1','3')", NL:"('4','5')", IE:"('3')", UK:"('1','2')", PT:"('1')"};
-            const store_id = {CZ:"('1')", SK:"('3')", BE:"('1','3')", NL:"('4','5')", IE:"('3')", UK:"('1','2')"};
+            const store_id = {CZ:"('1')", SK:"('3')", BE:"('1','3')", NL:"('4','5')"};
 
             let store_in = "";
             if (hub.includes(MarketCode)) {
