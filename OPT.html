@@ -162,7 +162,7 @@
             let updateVal = document.querySelector("#updateVal").innerHTML;
             if (updateVal != "") {
 
-            let query = `UPDATE newsletter_subscriber SET subscriber_status=3 WHERE ${store_in} subscriber_status = 1 AND subscriber_email IN(${updateVal}) LIMIT ${mailAreaLength};`;
+            let query = `UPDATE newsletter_subscriber SET subscriber_status=3, change_status_at = NOW(), optout_timestamp = NOW() WHERE ${store_in} subscriber_status = 1 AND subscriber_email IN(${updateVal}) LIMIT ${mailAreaLength};`;
             console.log(query);
             /* Copy the text inside the text field */
             navigator.clipboard.writeText(query);
