@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +18,9 @@
     <div class="row m-4 costomContainer">
       <p>No. of records found: <b id="mailAreaLength">0</b> </p>
 
-      <div class="col-md-12 m-1">
+      <div class="row m-2 text-left col-md-12 m-1">
+        <div class="col-md-8">
+
         <select class="search" id="MarketCode" style="width:20%" onchange="compate()">
           <option value="BR">Other</option>
           <option value="BE">BE</option>
@@ -26,6 +29,22 @@
           <option value="SK">IE / NZ / SK</option>
         </select>
       </div>
+
+        <div class="col-md-3 m-1">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="newsletter" value="optin" id="optin" checked>
+            <label class="form-check-label optin" for="newsletter1">
+              Opt-In
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="newsletter" value="optout" id="optout">
+            <label class="form-check-label optout" for="newsletter2">
+              Opt-Out
+            </label>
+          </div>
+        </div>
+    </div>
       <div class="col-md-4" onclick="insert()">
         <div class="ibox bg-success">
           <span id="insert"><i class="fa-solid fa-hand-pointer"></i></span>
@@ -120,7 +139,7 @@
             let mailAreaLength = document.querySelector("#mailAreaLength").innerHTML;
             let insertVal = document.querySelector("#insertVal").innerHTML;
             if (insertVal != "") {
-              let query = `SELECT subscriber_email FROM newsletter_subscriber WHERE ${store_in} subscriber_status = 1 AND subscriber_email IN(${insertVal}) LIMIT ${mailAreaLength};`;
+              let query = `SELECT subscriber_id, subscriber_email, subscriber_status, change_status_at, optin_timestamp, optout_timestamp, created_at FROM newsletter_subscriber WHERE ${store_in} subscriber_email IN(${insertVal}) LIMIT ${mailAreaLength};`;
               console.log(query);
               /* Copy the text inside the text field */
               navigator.clipboard.writeText(query);
@@ -153,6 +172,20 @@
             const hub = ['CZ', 'SK', 'BE', 'NL', 'IE', 'UK'];
             const store_id = {CZ:"('1')", SK:"('3')", BE:"('1','3')", NL:"('4','5')", IE:"('3')", UK:"('1','2')"};
 
+            var newsletter = document.querySelector('input[name="newsletter"]:checked').value;
+            let optin = document.querySelector(".optin");
+            let optout = document.querySelector(".optout");
+
+            let setSubscriberStatus = 0;
+            let whereSubscriberStatus = 0;
+            if (newsletter == "optin") {
+              setSubscriberStatus = 1;
+              whereSubscriberStatus = '(2,3,4)';
+            }else {
+              setSubscriberStatus = 3;
+              whereSubscriberStatus = '(1,2,4)';
+            }
+
             let store_in = "";
             if (hub.includes(MarketCode)) {
               store_in = `store_id in ${store_id[MarketCode]} AND`;
@@ -162,7 +195,7 @@
             let updateVal = document.querySelector("#updateVal").innerHTML;
             if (updateVal != "") {
 
-            let query = `UPDATE newsletter_subscriber SET subscriber_status=3, change_status_at = NOW(), optout_timestamp = NOW() WHERE ${store_in} subscriber_status = 1 AND subscriber_email IN(${updateVal}) LIMIT ${mailAreaLength};`;
+            let query = `UPDATE newsletter_subscriber SET subscriber_status=${setSubscriberStatus}, change_status_at = NOW(), optout_timestamp = NOW() WHERE subscriber_status IN${whereSubscriberStatus} AND ${store_in} subscriber_email IN(${updateVal}) LIMIT ${mailAreaLength};`;
             console.log(query);
             /* Copy the text inside the text field */
             navigator.clipboard.writeText(query);
@@ -205,7 +238,7 @@
             let updateVal = document.querySelector("#updateVal").innerHTML;
             if (updateVal != "") {
 
-            let query = `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity newsletter_subscriber --action upsert --count 15 --select "SELECT subscriber_id as id FROM newsletter_subscriber WHERE ${store_in} subscriber_email IN(${updateVal}) LIMIT ${mailAreaLength};";`;
+            let query = `sudo -u www-data bin/magento ndg-eventsengine:async:operation --entity newsletter_subscriber --action upsert --count 1000 --select "SELECT subscriber_id as id FROM newsletter_subscriber WHERE ${store_in} subscriber_email IN(SELECT subscriber_email FROM newsletter_subscriber WHERE  subscriber_id IN(${updateVal}))";`;
             console.log(query);
             /* Copy the text inside the text field */
             navigator.clipboard.writeText(query);
